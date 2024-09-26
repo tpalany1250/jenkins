@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    environment {
+        DIRECTORY_PATH = "C:\\Users\\thrry\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\my_first_pipeline"
+        TESTING_DIRECTORY = "unit tests and integration tests"
+        PRODUCTION_ENVIRONMENT = "Tom"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "fetch the source code from the directory path specified by" +
+                " the environment variable. $DIRECTORY_PATH"
+                echo "compile the code and generate any necessary artifacts"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "$TESTING_DIRECTORY started and completed"
+            }
+        }
+        stage('Code Quality Check') {
+            steps {
+                echo "Check the quality of the code"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploy the application to a testing environment " +
+                "specified by the environment variable"
+            }
+        }
+        stage('Approval') {
+            steps {
+                echo "Approval started and completed"
+                sleep 10
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo "$PRODUCTION_ENVIRONMENT, deploy to Production started and completed"
+            }
+        }
+    }
+}
